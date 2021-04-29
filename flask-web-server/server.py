@@ -1,12 +1,16 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
 def main():
-    @app.route('/', methods=['GET'])
-    def hello():
-        return "Hello Ganteng"
+    @app.route('/<name>', methods=['GET'])
+    def hello(name):
+        return render_template("home/index.html", myname=name.upper())
+
+    @app.route('/get', methods=['GET'])
+    def get():
+        return render_template("home/index.html")
 
 
 if __name__ == '__main__':
